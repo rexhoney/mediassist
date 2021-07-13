@@ -12,7 +12,8 @@ var pro = require("./provider-router");
 app.use("/prouter", pro); 
 var ned = require("./needy-router");
 app.use("/nrouter", ned);
-const port = process.emv.PORT || 202;
+
+const port = process.env.PORT || 202;
 app.listen(port,function()
 {
     console.log("Server Started");
