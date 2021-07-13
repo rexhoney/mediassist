@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Needy Details</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/myScript.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#tid").val(localStorage.getItem('id'));
+            var uid = $("#tid").val();
+            var url = "/nrouter/getalldataN?sid=" + uid;
+            $.get(url, function (datarecv) 
+            {
+                if (datarecv.length == 0) {
+                    //alert("not in database");
+                    $("#up").prop("value", "save");
+                }
+                else {
+                    //alert("in database");
+                    $("#tn").val(datarecv[0].name);
+                    $('#nl').html(datarecv[0].name).css('color', 'white');
+                    $("#tcty").val(datarecv[0].city);
+                    $("#tad").val(datarecv[0].address);
+                    $("#tac").val(datarecv[0].aadhar);
+                    //alert(JSON.stringify(datarecv));
+                }
+            });
+        })
+    </script>
+    
+</head>
+<body >
+    <div class="container-fluid">
+        <form class="body">
+            <center>
+                <h2>Needy profile form</h2>
+            </center>
+            <div class="row">
+                <div class="col">
+                    <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="sel" onchange="gon();" aria-label="Default select example">
+                        <option selected>Account</option>
+                        <option value="1">Home</option>
+                        <option value="3">Logout</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-3 offset-md-1">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" readonly name="tid" id="tid" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="tn" id="tn" placeholder="name@example.com">
+                        <label for="floatingInput">Name</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="tac" id="tac" placeholder="name@example.com">
+                        <label for="floatingInput">Aadhar</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3 offset-md-1">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="tcty" id="tcty" placeholder="name@example.com">
+                        <label for="floatingInput">City</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="tad" id="tad" placeholder="name@example.com">
+                        <label for="floatingInput">Address</label>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <div class="row mt-3">
+                    <div>
+                        <input type="button" id="up" class="btn" value="Update">
+                    </div>
+                </div>
+            </center>
+            <div class="row mt-3"></div>
+        </form>
+    </div>
+    
+</body>
+</html>

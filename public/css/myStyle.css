@@ -1,0 +1,29 @@
+*{
+    margin: 0px;;
+}
+body
+{
+    background-image: url(../uploads/medWallpaper\ \(2\).jpg);
+}
+.body
+{
+    background-color: rgb(41, 151, 165);
+    /* opacity: .8; */
+}
+.btn
+{
+    background-color: #bfecf8;border-radius: 1px;
+    color: black;border: 1px black solid;
+    /*background-color: #22eb29; border: 1px black solid;*/
+}
+.btn:hover
+{
+    /*background-color: #21DF26;color: black;*/
+    background-color: #f5fdff;color: black;
+    cursor: pointer;
+}
+#logo
+{
+    float: left;
+    background-image: url(../uploads/logo.jpg);
+}

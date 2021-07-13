@@ -1,0 +1,140 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/myScript.js"></script>
+    <title>Med avail</title>
+    <script>
+        $(document).ready(function () {
+            //$("#tid").val(localStorage.getItem('id'));
+            var uid = $("#tid").val();
+            var url = "/prouter/getalldataP?sid=" + uid;
+            $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
+                if (datarecv.length == 0) 
+                {
+                }
+                else {
+                    //alert(JSON.stringify(datarecv));
+                    $("#tcty").val(datarecv[0].city);
+                    $('#nl').html("Welcome &nbsp;"  + datarecv[0].name).css('color', 'white');
+                }
+            });
+        })
+    </script>
+</head>
+
+<body ng-app="module1" ng-controller="control1" ng-init="loademail();fetchUserM();">
+    <div class="container">
+        <form class="body" method="POST" action="/medsave" enctype="multipart/form-data">
+            <center><h2>Medicine Avail</h2></center>
+            
+            <div class="row">
+                <div class="offset-md-1 col">
+                    <h5><span id="nl"> </span></h5>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="sel" onchange="goP();" aria-label="Default select example">
+                        <option selected>Account</option>
+                        <option value="1">Home</option>
+                        <option value="4">Logout</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                
+                <div class="offset-md-1 col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" readonly ng-model="uid" name="tid" id="tid" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" required name="tcty" id="tcty" placeholder="name@example.com">
+                        <label for="floatingInput">City</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+
+                <div class="offset-md-1 col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" required name="mn" id="mn" placeholder="name@example.com">
+                        <label for="floatingInput">Medicine Name</label>
+                    </div>
+                </div>
+            
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" required name="mc" id="mc"placeholder="name@example.com">
+                        <label for="floatingInput">Company</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" required name="md" id="md"placeholder="name@example.com">
+                        <label for="floatingInput">Expiry date</label>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row  mt-3">
+
+                <div class="offset-md-1 col-md-3">
+                    <div class="form-floating">
+                        <select class="form-select" id="ms" name="ms" required aria-label="Floating label select example">
+                            <option selected disabled value="">Select</option>
+                            <option value="Tablets">Tablets</option>
+                            <option value="Bottle">Bottle</option>
+                            <option value="Strips">Strips</option>
+                        </select>
+                        <label for="floatingSelect">Unit</label>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" required name="mq" id="mq" placeholder="name@example.com">
+                        <label for="floatingInput">Quantity</label>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row mt-3">
+
+                <div class="offset-md-1 col-md-9">
+                    
+                </div>
+                <div class="offset-md-1 col-md-7 mt-5 pt-4">
+                    <label for="formFile" class="form-label">Upload Pic</label>
+                    <input class="form-control" type="file" required onchange="loadpicM(this);" name="ppic" id="ppic">
+                </div>
+                <div class="col-md-3">
+                    <img src="" width="150" height="150" id="prevM" style="display: none;">
+                </div>
+
+            </div>
+            <div class="row mt-3"></div>
+            <center>
+            <div>
+                <button type="submit" id="Save" class="btn btn-primary">Save</button>
+            </div>
+            </center>
+            <div class="row mt-3"></div>
+        </form>
+    </div>
+</body>
+
+</html>

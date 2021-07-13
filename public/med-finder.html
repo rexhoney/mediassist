@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/myScript.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#tid").val(localStorage.getItem('id'));
+            var uid = $("#tid").val();
+            var url = "/nrouter/getalldataN?sid=" + uid;
+            $.get(url, function (datarecv) {
+                if (datarecv.length == 0) {
+                    //alert("not in database");
+                }
+                else {
+                    //alert("in database");
+                    $('#nl').html(datarecv[0].name).css('color', 'white');
+                    //alert(JSON.stringify(datarecv));
+                }
+            });
+        })
+    </script>
+    <script>
+        var mymodule = angular.module("module1",[])
+        mymodule.controller("control1",function($scope,$http)
+        {
+            $scope.jasonCities=[{}];
+            $scope.fetchCitiesM=function()
+            {
+                $scope.hid = true;
+                $http.get("/fetchCitiesM").then(ok,nok);
+                function ok(response){
+                    //alert("ok");
+                    //alert(JSON.stringify(response.data));
+                    $scope.jasonCities=response.data;
+                }
+                function nok(response){
+                    alert("Not ok");
+                    alert(JSON.stringify(response.data));
+                }
+            }
+
+            $scope.jsonMedicines=[{}];
+            $scope.selcity = "";
+            $scope.fetchallmedofselcity = function () {
+
+                $http.get("/fetchallmedofselcity?selcity=" + $scope.selcity).then(ok, notok);
+                function ok(response) 
+                {
+                    //alert("ok");
+                    //alert(JSON.stringify(response.data));
+                    $scope.jsonMedicines = response.data;
+                }
+
+                function notok(response) {
+                    alert("Danger");
+                    alert(JSON.stringify(response.data));
+                }
+            }
+            
+            $scope.jsonProviders=[{}];
+            $scope.selmed = "";
+            var cr = document.getElementById("#crd");
+            $scope.fetchselmedofselcity = function () {
+                //alert($scope.selBranch);
+
+                $http.get("/fetchselmedofselcity?selmed=" + $scope.selmed+"&selcity="+$scope.selcity).then(ok, notok);
+                function ok(response) 
+                {
+                    $scope.hid = false;
+                    //alert("ok");
+                    //alert(JSON.stringify(response.data));
+                    $scope.jsonProviders = response.data;
+                }
+                function notok(response) {
+                    alert("Danger");
+                    alert(JSON.stringify(response.data));
+                }
+            }
+
+            $scope.jsonProvider=[{}];
+            // $scope.getalldataP = function () {
+            //     alert();
+            //     $http.get("/getalldataP?sid=" + id).then(ok, notok);
+            //     function ok(response) {
+            //         //alert("ok");
+            //         alert(JSON.stringify(response.data));
+            //         $scope.jsonProvider = response.data;
+            //     }
+            //     function notok(response) {
+            //         alert("Danger");
+            //         alert(JSON.stringify(response.data));
+            //     }
+            // }
+            $scope.showModel=function(id)
+            {
+                //alert(id);
+                $('#mdl').modal('show');
+                $http.get("/prouter/getalldataP?sid=" + id).then(ok, notok);
+                function ok(response) {
+                    //alert("ok");
+                    $scope.jsonProvider = response.data;
+                    //alert(JSON.stringify(response.data);
+                }
+                function notok(response) {
+                    alert("Danger");
+                    alert(JSON.stringify(response.data));
+                }
+            }
+        });
+    </script>
+    
+</head> 
+<body  ng-app="module1" ng-controller="control1" ng-init="fetchCitiesM();">
+    <div class="container">
+        <form action="" class="body">
+            <center><u><h2>Med Finder</h2></u></center>
+            <div class="row">
+                <div class="col">
+                    <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+                    <input type="text" hidden name="" id="tid">
+                </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="sel" onchange="gon();" aria-label="Default select example">
+                        <option selected>Account</option>
+                        <option value="1">Home</option>
+                        <option value="3">Logout</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+
+                <div class="col-md-3 offset-md-1" style="border: aquamarine ;">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Select City</label>
+                        <input class="form-control" list="cities" ng-model="selcity" placeholder="Type to search...">
+                        <datalist id="cities">
+                            <option ng-repeat="obj in jasonCities" value="{{obj.city}}">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="col-md-2" style="border: aqua ;">
+                        <div class="mt-4 pt-2"></div>
+                        <button type="button" class="btn btn-primary" ng-click="fetchallmedofselcity();">Load Medicines</button>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Select Medicine</label>
+                        <input class="form-control" list="medicines" ng-model="selmed"  placeholder="Type to search...">
+                        <datalist id="medicines">
+                            <option ng-repeat="obj in jsonMedicines" value="{{obj.medname}}">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="col-md-3 ">
+                    <div class="mt-3">
+                    <div class="mt-4 pt-2">
+                    <button type="button" class="btn btn-primary" ng-click="fetchselmedofselcity();">Find Providers</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3" style="border: blue ;" > 
+                <div class="col-md-4 mt-2" style="border: aqua ;"  ng-repeat="obj in jsonProviders">
+                    <div class="card" id="crd" ng-hide="hid">
+                        <img src="uploads/{{obj.picname}}" class="card-img-top" alt="...">
+                        <div class="card-body" >
+                            <h5 class="card-title">Provider Email: {{obj.email}}</h5>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Medicine Name</td>
+                                    <td>{{obj.medname}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Company</td>
+                                    <td>{{obj.company}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Expiry Date</td>
+                                    <td>{{obj.expdate.substr(0,10)}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Unit</td>
+                                    <td>{{obj.unit}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantity</td>
+                                    <td>{{obj.qty}}</td>
+                                </tr>
+                            </table>
+                            <!-- <p class="card-text">Medicine Name: {{obj.medname}}
+                            <p class="card-text">Company: {{obj.company}}</p>
+                            <p class="card-text">Expiry Date: {{obj.expdate.substr(0,10)}}</p>
+                            <p class="card-text">Unit: {{obj.unit}}</p>
+                            <p class="card-text">Quantity: {{obj.qty}}</p> -->
+                            <center><input type="button"class="btn btn-primary" ng-click="showModel(obj.email); " value="Provider Details"></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!--//////////////////////////////////////////////-----------MODEL-------///////////////////////////////////////////////////-->
+    <div class="modal fade" tabindex="-1" id="mdl">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: azure;">
+                    <h5 class="modal-title" style="margin: auto;">Provider Details</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <center>
+                <p ng-repeat=" obj in jsonProvider">
+                 <img src="uploads/{{obj.picname}}" width=150; height= 150; style="border-radius: 50%;"><br>
+                </p></center>
+                    <table class="table table-bordered" ng-repeat=" obj in jsonProvider">
+                        <tr>
+                            <td>Email</td>
+                            <td >{{obj.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{obj.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td>{{obj.contact}}</td>
+                        </tr>
+                        <tr>
+                            <td>Aadhaar</td>
+                            <td>{{obj.acard}}</td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>{{obj.city}}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>{{obj.address}}</td>
+                        </tr>
+                    </table>
+                    <center><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button></center>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

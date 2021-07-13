@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {cursor:pointer; }
+		.number{
+			margin:100px;
+		}
+		.minus, .plus
+        {
+			width:10px;
+			height:20px;
+			border-radius:4px;
+			padding:8px 5px 8px 5px;
+			border:1px solid #ddd;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+		}
+		.inp
+        {
+			height:34px;
+            width: 40px;
+            text-align: center;
+            font-size: 19px;
+			border:1px solid #ddd;
+			border-radius:4px;
+            /* display: inline-block; */
+            vertical-align: middle;
+        }
+    </style>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+                $('.minus').click(function () {
+                    var $input = $(this).parent().find('.inp');
+                    var count = parseInt($input.val()) - 1;
+                    count = count < 1 ? 1 : count;
+                    $input.val(count);
+                    $input.change();
+                    return false;
+                });
+                $('.plus').click(function () {
+                    var $input = $(this).parent().find('.inp');
+                    $input.val(parseInt($input.val()) + 1);
+                    $input.change();
+                    return false;
+                });
+            });
+    </script>
+</head>
+<body>
+    <div class="number">
+        <span class="minus">-</span>
+        <input class="inp" type="text" value="1" />
+        <span class="plus">+</span>
+    </div>
+</body>
+</html>

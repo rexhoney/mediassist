@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/myScript.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function () {
+            $("#tid").val(localStorage.getItem('id'));
+            var uid = $("#tid").val();
+            var url = "/prouter/getalldataP?sid=" + uid;
+            $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
+                if (datarecv.length == 0) {
+                    $("#ers").html("*not in Database").css({ "color": "white" });
+                    $("#btnu").prop("hidden", 'hidden');
+                    j1 = true;
+                }
+                else {
+                    $("#ers").html("*In Database").css({ "color": "white" });
+                    $('#btns').prop('hidden', 'hidden');
+                    //alert(JSON.stringify(datarecv));
+
+                    $("#tn").val(datarecv[0].name);
+                    $("#tcty").val(datarecv[0].city);
+                    //   alert("update city");
+                    var image = document.getElementById('prevP');
+                    image.style.display = "block";
+                    $("#prevP").attr("src", "uploads/" + datarecv[0].picname);
+                    $("#hid").val(datarecv[0].picname);
+                    $("#txtm").val(datarecv[0].contact);
+                    $("#tad").val(datarecv[0].address);
+                    $("#tac").val(datarecv[0].acard);
+                    j1 = false;
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form class="body" method="POST" action="/prouter/pprofs" enctype="multipart/form-data">
+        <center><h2>Provider profile form</h2></center>
+        <div class="row" style="border: 1px ;">
+            <div class="offset-md-10 col-md-2" style="float: right;">
+                <select class="form-select" id="sel" onchange="goP();" aria-label="Default select example">
+                    <option selected>Account</option>
+                    <option value="1">Home</option>
+                    <option value="4">Logout</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+                <div class="col-md-6 offset-md-1" style="border: 2px tomato ;">
+                    <span id="ers">*</span>
+                    <div class="col-md-9 mb-3">
+                        <input type="text" id="tid" readonly name="tid" required class="form-control" placeholder="Email address"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                    </div>
+                    <label for="formFile" class="form-label" style="color: white;">Upload Pic</label>
+                    <input class="form-control" type="file" onchange="loadpicP(this)" name="ppic" id="ppic">
+                </div>
+                <div class="col-md-1" style="border:2px steelblue ;">
+                    <img src="" width="150" height="150" id="prevP" style="border: 2px steelblue ; display: none;">
+                    <input id="hid" name="hid" hidden type="text">
+                </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3 offset-md-1">
+                <div class="col-md-11"><span id="ern">*</span></div>
+                <div class="form-floating mb-3" style="border: 1px seagreen ;">
+                    <input type="text" class="form-control" required pattern="^[A-Za-z]+$" name="tn" id="tn"placeholder="name@example.com">
+                    <label for="floatingInput">Name</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="col-md-12"><span id="erm">*</span></div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" required pattern="^[7-9]{1}[0-9]{9}$" name="tcnt" id="txtm"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Contact</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="col-md-11"><span id="erac">*</span></div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" pattern="^[0-9]{14}$" required name="tac" id="tac"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Adhaar</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 offset-md-1">
+                <div class="col-md-12"><span id="erc">*</span></div>
+                <div class="form-floating mb-3" >
+                    <input type="text" class="form-control" required pattern="^[A-Za-z]+$" name="tcty" id="tcty"
+                        placeholder="name@example.com">
+                    <label for="floatingInput">City</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-9"><span id="erad">*</span></div>
+                <div class="form-floating" >
+                    <textarea class="form-control" required placeholder="Leave a comment here" name="tad" id="tad"
+                        style="height: 100%;"></textarea>
+                    <span id="erad"></span>
+                    <label for="floatingTextarea2">Address</label>
+                </div>
+            </div>
+        </div>
+    <center><div class="row mt-3">
+                <div>
+                    <button type="submit" id="btns" class="btn">Save</button>
+                    <button type="submit" id="btnu" class="btn" formaction="/prouter/pprofu">Update</button>
+                </div>
+            </div>
+    </center>
+    <div class="row mt-3"></div>
+
+        </form>
+    </div>
+</body>
+</html>
