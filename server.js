@@ -20,24 +20,31 @@ app.listen(port,function()
 });
 var dbConfiObj =
 {
-    // host: "localhost",
-    // user: "root",
-    // password: "",
-    // database: "maindata"
+    // HOST: "localhost",
+    // USER: "root",
+    // PASSWORD: "",
+    // DATABASE: "maindata"
 
-    host: "us-cdbr-east-04.cleardb.com",
-    user: "b18b3ac4e2b587",
-    password: "011de83f",
-    database: "heroku_ea4bcb02340f567"
+    HOST: "us-cdbr-east-04.cleardb.com",
+    USER: "b18b3ac4e2b587",
+    PASSWORD: "011de83f",
+    DATABASE: "heroku_ea4bcb02340f567"
 }
-var dbcon = mysql.createPool(dbConfiObj);
-dbcon.connect(function (err)
-{
-    if (err)
-        console.log(err.message);
-    else
-        console.log("Main Server Connected to database");
-})
+// var dbcon = mysql.createConnection(dbConfiObj);
+var dbcon = mysql.createPool({
+    host: dbConfiObj.HOST,
+    user: dbConfiObj.USER,
+    password: dbConfiObj.PASSWORD,
+    database: dbConfiObj.DATABASE
+});
+module.exports = dbcon;
+// dbcon.connect(function (err)
+// {
+//     if (err)
+//         console.log(err.message);
+//     else
+//         console.log("Main Server Connected to database");
+// })
 app.get("/",function(req,resp)//--------------------------OPEN INDEX PAGE--------------------------------------------------------------
 {
     resp.sendFile(process.cwd()+"/public/index.html");
