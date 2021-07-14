@@ -30,7 +30,7 @@ var dbConfiObj =
     password: "011de83f",
     database: "heroku_ea4bcb02340f567"
 }
-var dbcon = mysql.createConnection(dbConfiObj);
+var dbcon = mysql.createPool(dbConfiObj);
 dbcon.connect(function (err)
 {
     if (err)
