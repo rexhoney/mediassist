@@ -16,12 +16,12 @@ var dbConfiObj =
     database: "heroku_ea4bcb02340f567"
 }
 var dbcon = mysql.createConnection(dbConfiObj);
-dbcon.connect(function (err) {
-    if (err)
-        console.log(err.message);
-    else
-        console.log("Provider Router Connected to Database"); 
-})
+// dbcon.connect(function (err) {
+//     if (err)
+//         console.log(err.message);
+//     else
+//         console.log("Provider Router Connected to Database"); 
+// })
 app.get("/p", function (req, resp)//----------------------OPEN PROVIDER PROFILE---------------------------------------------
 {
     //resp.sendFile(path.join('__dirname','public', 'provider-profile.html'));

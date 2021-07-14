@@ -15,13 +15,13 @@ var dbConfiObj =
     password: "011de83f",
     database: "heroku_ea4bcb02340f567"
 }
-var dbcon = mysql.createConnection(dbConfiObj);
-dbcon.connect(function (err) {
-    if (err)
-        console.log(err.message);
-    else
-        console.log("Needy Router Connected to database");
-});
+var dbcon = mysql.createPool(dbConfiObj);
+// dbcon.connect(function (err) {
+//     if (err)
+//         console.log(err.message);
+//     else
+//         console.log("Needy Router Connected to database");
+// });
 app.get('/np', function (req, res)//----------------------OPEN NEEDY DETAILS-----------------------------------------------------
 {
     res.sendFile(path.join(__dirname, '/public/needy-details.html'));
