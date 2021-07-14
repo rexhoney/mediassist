@@ -9,7 +9,7 @@ var dbConfiObj =
     // user: "root",
     // password: "",
     // database: "maindata"
-
+ 
     host: "us-cdbr-east-04.cleardb.com",
     user: "b513a81b4bc78a",
     password: "3d931353",
@@ -26,7 +26,7 @@ app.get("/p", function (req, resp)//----------------------OPEN PROVIDER PROFILE-
 {
     //resp.sendFile(path.join('__dirname','public', 'provider-profile.html'));
     resp.sendFile(process.cwd() + "/public/provider-profile.html");
-})
+});
 app.get("/ma", function (req, resp)//---------------------OPEN MED AVAIL---------------------------------------------
 {
     resp.sendFile(process.cwd() + "/public/med-avail.html");
