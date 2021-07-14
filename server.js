@@ -20,15 +20,15 @@ app.listen(port,function()
 });
 var dbConfiObj =
 {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "maindata"
+    // host: "localhost",
+    // user: "root",
+    // password: "",
+    // database: "maindata"
 
-    // host: "us-cdbr-east-04.cleardb.com",
-    // user: "b513a81b4bc78a",
-    // password: "3d931353",
-    // database: "heroku_98a560385d815c7"
+    host: "us-cdbr-east-04.cleardb.com",
+    user: "b18b3ac4e2b587",
+    password: "011de83f",
+    database: "heroku_ea4bcb02340f567"
 }
 var dbcon = mysql.createConnection(dbConfiObj);
 dbcon.connect(function (err)
