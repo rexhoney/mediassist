@@ -21,7 +21,7 @@ dbcon.connect(function (err) {
         console.log(err.message);
     else
         console.log("Needy Router Connected to database");
-})
+});
 app.get('/np', function (req, res)//----------------------OPEN NEEDY DETAILS-----------------------------------------------------
 {
     res.sendFile(path.join(__dirname, '/public/needy-details.html'));
