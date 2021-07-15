@@ -17,9 +17,10 @@
                     var url = "/prouter/getalldataP?sid=" + uid;
                     $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                         if (datarecv.length == 0) {
+                            $('#nl').html("Please update your profile").css({'color':'black',"font-style":"italic"});
                         }
                         else {
-                            $('#nl').html(datarecv[0].name).css('color', 'white');
+                            $('#nl').html("Welcome &nbsp;"+datarecv[0].name).css('color', 'white');
                         }
                     });
                 });
@@ -33,7 +34,7 @@
 
             <div class="row">
                 <div class="col">
-                    <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+                    <h5><span id="nl"> </span></h5>
                     <input type="text" hidden name="" id="tid">
                 </div>
             </div>

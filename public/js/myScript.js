@@ -248,7 +248,7 @@ $(document).ready(function () {
   })
   $("#tn").blur(function ()//----------------------PROVIDER PROFILE NAME VALIDATION----------------------------------------------------
   {
-    var r = /^[A-Za-z]+$/; //for name
+    var r = /^[A-Za-z ]+$/; //for name
     var m = $(this).val();
     if ($(this).val().length == 0) {
       $("#ern").html("*Name can't be blank").css({ "color": "red", "font-size": "13px" });
@@ -340,7 +340,11 @@ mymodule.controller("control1", function ($scope, $http)//$scope is lib object p
     function ok(response) {
       //alert("ok");
       //alert(JSON.stringify(response.data));
-      $scope.jsonArray = response.data;
+      // if (response.data.length == 0) {
+      //   $('').html("Please update your profile").css({ 'color': 'black', "font-style": "italic" });
+      // }
+      // else {
+        $scope.jsonArray = response.data;
     }
     function nok(response) {
       alert("not ok");

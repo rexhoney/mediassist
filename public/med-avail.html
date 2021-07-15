@@ -18,6 +18,7 @@
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) 
                 {
+                    $('#nl').html("Please update your profile first").css({ 'color': 'brown', "font-style": "italic" });
                 }
                 else {
                     //alert(JSON.stringify(datarecv));

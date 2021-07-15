@@ -18,11 +18,17 @@
             var url = "/prouter/getalldataP?sid=" + uid;
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) {
+                    $('#nl').html("Please update your profile").css({ 'color': 'black', "font-style": "italic" });
                 }
                 else {
                     //alert(JSON.stringify(datarecv));
-                    $('#nl').html(datarecv[0].name).css('color', 'white');
+                    $('#nl').html("Welcome &nbsp;" + datarecv[0].name).css('color', 'white');
                 }
+            });
+            var url = "/fetchUserM?uid=" + uid;
+            $.get(url, function (datarecv) {//---------------FETCH USER MEDICINE--------------------------------------------------
+                if (datarecv.length == 0) 
+                    $('#sm').html("NO MEDICINE FOUND");
             });
         })
     </script>
@@ -36,7 +42,7 @@
         </center>
         <div class="row">
             <div class="col">
-                <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+                <h5><span id="nl"> </span></h5>
             </div>
             <div class="col-md-2">
                 <select class="form-select" id="sel" onchange="goP();" style="border: 1px solid; border-radius: 2px 2px 2px 2px;" aria-label="Default select example">
@@ -89,6 +95,7 @@
                 </th>
                 <!-- <th><center>rid</center></th> -->
             </tr>
+            
             <tr ng-repeat="obj in jsonArray|filter:google">
                 <td align="center">&nbsp;{{$index+1}}&nbsp;</td>
                 <td>&nbsp;{{obj.medname}}&nbsp;</td>
@@ -106,6 +113,7 @@
                 </td>
             </tr>
         </table>
+        <center><div class="row mt-5" style="background-color: brown; color: whitesmoke;"><b><span id="sm"></span></b></div></center>
     </div>
 
     <!--//////////////////////////////////////////////-----------MODEL-------///////////////////////////////////////////////////-->
