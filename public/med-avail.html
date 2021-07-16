@@ -18,7 +18,7 @@
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) 
                 {
-                    $('#nl').html("Please update your profile first").css({ 'color': 'brown', "font-style": "italic" });
+                    $('#mnl').html("Please update your profile first").css({ 'color': 'brown', "font-style": "italic" });
                 }
                 else {
                     //alert(JSON.stringify(datarecv));
@@ -37,9 +37,10 @@
             
             <div class="row">
                 <div class="offset-md-1 col">
+                    <marquee behavior="alternate" direction=""><h5><span id="mnl"> </span></h5></marquee>
                     <h5><span id="nl"> </span></h5>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 me-5">
                     <select class="form-select" id="sel" onchange="goP();" aria-label="Default select example">
                         <option selected>Account</option>
                         <option value="1">Home</option>

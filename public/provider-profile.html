@@ -17,18 +17,16 @@
             var url = "/prouter/getalldataP?sid=" + uid;
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) {
-                    $("#ers").html("*not in Database").css({ "color": "white" });
+                    //$("#ers").html("*not in Database").css({ "color": "white" });
                     $("#btnu").prop("hidden", 'hidden');
                     j1 = true;
                 }
                 else {
-                    $("#ers").html("*In Database").css({ "color": "white" });
-                    $('#btns').prop('hidden', 'hidden');
                     //alert(JSON.stringify(datarecv));
-
+                    $('#nl').html("Welcome &nbsp;" + datarecv[0].name).css('color', 'white');
+                    //$("#ers").html("*In Database").css({ "color": "white" });
                     $("#tn").val(datarecv[0].name);
                     $("#tcty").val(datarecv[0].city);
-                    //   alert("update city");
                     var image = document.getElementById('prevP');
                     image.style.display = "block";
                     $("#prevP").attr("src", "uploads/" + datarecv[0].picname);
@@ -36,6 +34,7 @@
                     $("#txtm").val(datarecv[0].contact);
                     $("#tad").val(datarecv[0].address);
                     $("#tac").val(datarecv[0].acard);
+                    $('#btns').prop('hidden', 'hidden');
                     j1 = false;
                 }
             });
@@ -46,8 +45,12 @@
     <div class="container">
         <form class="body" method="POST" action="/prouter/pprofs" enctype="multipart/form-data">
         <center><h2>Provider profile form</h2></center>
+
         <div class="row" style="border: 1px ;">
-            <div class="offset-md-10 col-md-2" style="float: right;">
+            <div class="offset-md-1 col">
+                <h5><span id="nl"> </span></h5>
+            </div>
+            <div class="col-md-2 me-5" style="float: right;">
                 <select class="form-select" id="sel" onchange="goP();" aria-label="Default select example">
                     <option selected>Account</option>
                     <option value="1">Home</option>

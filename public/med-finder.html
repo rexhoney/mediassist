@@ -19,11 +19,12 @@
             $.get(url, function (datarecv) {
                 if (datarecv.length == 0) {
                     //alert("not in database");
+                    $('#mnl').html("Please update your profile").css({ 'color': 'black', "font-style": "italic" });
                 }
                 else {
                     //alert("in database");
-                    $('#nl').html(datarecv[0].name).css('color', 'white');
                     //alert(JSON.stringify(datarecv));
+                    $('#nl').html("Welcome &nbsp;" + datarecv[0].name).css('color', 'white');
                 }
             });
         })
@@ -123,12 +124,13 @@
     <div class="container">
         <form action="" class="body">
             <center><u><h2>Med Finder</h2></u></center>
-            <div class="row">
+            <div class="row offset-md-1">
                 <div class="col">
-                    <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+                    <h5><span id="nl"> </span></h5>
+                    <marquee behavior="alternate" direction=""><h5><span id="mnl"> </span></h5></marquee>
                     <input type="text" hidden name="" id="tid">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 me-5">
                     <select class="form-select" id="sel" onchange="gon();" aria-label="Default select example">
                         <option selected>Account</option>
                         <option value="1">Home</option>

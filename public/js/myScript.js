@@ -227,7 +227,7 @@ $(document).ready(function () {
     var vc = $("#tcty").val();
     var vad = $("#tad").val();
     //alert(vm);
-    if ($(this).val() == "save") {
+    if ($(this).val() == "Save") {
       var url = "/nrouter/needySave?sid=" + vid + "&sn=" + vn + "&sac=" + vac + "&sc=" + vc + "&sad=" + vad;
       $.get(url, function (datarecv) {
         if (datarecv.length == 0)

@@ -18,10 +18,11 @@
             var url = "/nrouter/getalldataN?sid=" + uid;
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) {
+                    $('#mnl').html("Please update your profile").css({ 'color': 'black', "font-style": "italic" });
                 }
                 else 
                 {
-                    $('#nl').html(datarecv[0].name).css('color', 'white');
+                    $('#nl').html("Welcome &nbsp;"+datarecv[0].name).css('color', 'white');
                 }
             });
         });
@@ -33,13 +34,14 @@
             <h2><u> Needy Dash Board</u></h2>
         </center>
 
-        <div class="">
-            <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
+        <div class="row mt-5 offset-md-1">
+            <h5><span id="nl"> </span></h5>
+            <marquee behavior="alternate" direction=""><h5><span id="mnl"> </span></h5></marquee>
             <input type="text" hidden name="" id="tid">
         </div>
 
-            <div class="row mt-5">
-                <div class="col-md-3 offset-md-1">
+            <div class="row mt-3">
+                <div class="col-md-3 offset-md-1 mt-3">
                     <div class="body" style="border: 2px black solid;">
                         <img src="uploads/user.png" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -48,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-3">
                     <div class="body" style="border: 2px black solid;">
                         <img src="uploads/medicine background.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -57,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-3">
                     <div class="body" style="border: 2px black solid;">
                         <img src="uploads/user.png" class="card-img-top" alt="...">
                         <div class="card-body">

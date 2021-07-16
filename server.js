@@ -63,7 +63,7 @@ app.get("/respinsert", function (req, resp)//-------------AJAX RESPONSE INSERT D
         resp.send(res);
     });
 }); 
-app.post("/medsave", function (req, resp)//---------------PROCESS SAVE MED AVAIL DATA IN MEDECINES----------------------------------------------
+app.post("/medsave", function (req, resp)//---------------PROCESS SAVE MEDECINES----------------------------------------------
 {
     resp.setHeader("content-type", "text/html");
 

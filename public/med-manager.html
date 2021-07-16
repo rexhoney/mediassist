@@ -18,7 +18,7 @@
             var url = "/prouter/getalldataP?sid=" + uid;
             $.get(url, function (datarecv) {//---------------PROVIDER PROFILE FETCH DATA--------------------------------------------------
                 if (datarecv.length == 0) {
-                    $('#nl').html("Please update your profile").css({ 'color': 'black', "font-style": "italic" });
+                    $('#mnl').html("Please update your profile then upload medicine").css({ 'color': 'black', "font-style": "italic" });
                 }
                 else {
                     //alert(JSON.stringify(datarecv));
@@ -42,6 +42,7 @@
         </center>
         <div class="row">
             <div class="col">
+                <marquee behavior="alternate" direction=""><h5><span id="mnl"> </span></h5></marquee>
                 <h5><span id="nl"> </span></h5>
             </div>
             <div class="col-md-2">
