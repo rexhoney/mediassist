@@ -72,48 +72,49 @@
                 </div>
             </div>
         </div>
-
-        <table class="table table-dark table-hover">
-            <tr>
-                <th>Sr.no</th>
-                <th>&nbsp;Medicine Name&nbsp;</th>
-                <th>&nbsp;Company&nbsp;</th>
-                <th>
-                    <center>Expiry</center>
-                </th>
-                <th>
-                    <center>&nbsp;Unit&nbsp;</center>
-                </th>
-                <th>&nbsp;Quantity&nbsp;</th>
-                <th>
-                    <center>&nbsp;Image&nbsp;</center>
-                </th>
-                <th>
-                    <center>&nbsp;Date Updated&nbsp;</center>
-                </th>
-                <th>
-                    <center>Action</center>
-                </th>
-                <!-- <th><center>rid</center></th> -->
-            </tr>
-            
-            <tr ng-repeat="obj in jsonArray|filter:google">
-                <td align="center">&nbsp;{{$index+1}}&nbsp;</td>
-                <td>&nbsp;{{obj.medname}}&nbsp;</td>
-                <td>&nbsp;{{obj.company}}&nbsp;</td>
-                <td align="center">&nbsp;{{obj.expdate.substr(0,10)}}&nbsp;</td>
-                <td align="center">&nbsp;{{obj.unit}}&nbsp;</td>
-                <td align="center">&nbsp;{{obj.qty}}&nbsp;</td>
-                <td align="center"><img src="uploads/{{obj.picname}}" width="100" height="100">&nbsp;</td>
-                <td align="center">&nbsp;{{obj.doa}}&nbsp;</td>
-                <td align="center">
-                    <!-- &nbsp;<input class="btn" type="button" ng-show="btne"  id="ed" value="Edit form" ng-click="rid(obj.rid);">&nbsp; -->
-                    &nbsp;<input class="btn" type="button" id="ed" value="Edit"
-                        ng-click="frid(obj.rid);" >&nbsp;
-                    &nbsp;<input class="btn" type="button" value="Remove" ng-click="delete(obj.rid);">&nbsp;
-                </td>
-            </tr>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover">
+                <tr>
+                    <th>Sr.no</th>
+                    <th>&nbsp;Medicine Name&nbsp;</th>
+                    <th>&nbsp;Company&nbsp;</th>
+                    <th>
+                        <center>Expiry</center>
+                    </th>
+                    <th>
+                        <center>&nbsp;Unit&nbsp;</center>
+                    </th>
+                    <th>&nbsp;Quantity&nbsp;</th>
+                    <th>
+                        <center>&nbsp;Image&nbsp;</center>
+                    </th>
+                    <th>
+                        <center>&nbsp;Date Updated&nbsp;</center>
+                    </th>
+                    <th>
+                        <center>Action</center>
+                    </th>
+                    <!-- <th><center>rid</center></th> -->
+                </tr>
+                
+                <tr ng-repeat="obj in jsonArray|filter:google">
+                    <td align="center">&nbsp;{{$index+1}}&nbsp;</td>
+                    <td>&nbsp;{{obj.medname}}&nbsp;</td>
+                    <td>&nbsp;{{obj.company}}&nbsp;</td>
+                    <td align="center">&nbsp;{{obj.expdate.substr(0,10)}}&nbsp;</td>
+                    <td align="center">&nbsp;{{obj.unit}}&nbsp;</td>
+                    <td align="center">&nbsp;{{obj.qty}}&nbsp;</td>
+                    <td align="center"><img src="uploads/{{obj.picname}}" width="100" height="100">&nbsp;</td>
+                    <td align="center">&nbsp;{{obj.doa}}&nbsp;</td>
+                    <td align="center">
+                        <!-- &nbsp;<input class="btn" type="button" ng-show="btne"  id="ed" value="Edit form" ng-click="rid(obj.rid);">&nbsp; -->
+                        &nbsp;<input class="btn" type="button" id="ed" value="Edit"
+                            ng-click="frid(obj.rid);" >&nbsp;
+                        &nbsp;<input class="btn" type="button" value="Remove" ng-click="delete(obj.rid);">&nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
         <center><div class="row mt-5" style="background-color: brown; color: whitesmoke;"><b><span id="sm"></span></b></div></center>
     </div>
 
