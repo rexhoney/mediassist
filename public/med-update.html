@@ -57,10 +57,10 @@
     <div class="container">
         <form class="body" method="POST" action="/updateMed" enctype="multipart/form-data">
             <center>
-                <h2>Medicine Update</h2> 
+                <h2>Medicine Update</h2>
             </center>
             <div class="row" style="border: 1px ;">
-                <div class="offset-md-1 col">
+                <div class="offset-md-1 col-md-8">
                     <h5><label for="" style="color: white;">Welcome &nbsp;</label><span id="nl"> </span></h5>
                 </div>
                 <div class="col-md-2">
@@ -72,29 +72,29 @@
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row" hidden>
 
                 <div class="offset-md-1 col-md-3">
                     <div class="form-floating">
-                        <input type="text" class="form-control" hidden ng-model="uid" name="tid" id="tid"
+                        <input type="text" class="form-control"  ng-model="uid" name="tid" id="tid"
                             placeholder="name@example.com">
-                        <label for="floatingInput" hidden>Email address</label>
+                        <label for="floatingInput" >Email address</label>
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col-md-3">
                     <div class="form-floating">
-                        <input type="text" class="form-control" hidden name="tcty" id="tcty"
+                        <input type="text" class="form-control"  name="tcty" id="tcty"
                             placeholder="name@example.com">
-                        <label for="floatingInput" hidden>City</label>
+                        <label for="floatingInput" >City</label>
                     </div>
                 </div>
             </div>
-<input type="text" hidden name="tr" id="tr">
+            <input type="text" hidden name="tr" id="tr">
 
-            <div class="row mt-2">
+            <div class="row mt-3">
 
-                <div class="offset-md-1 col-md-3">
+                <div class="offset-md-1 col-md-3 mt-2">
                     <div class="form-floating">
                         <input type="text" class="form-control" required name="mn" id="mn"
                             placeholder="name@example.com">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-2">
                     <div class="form-floating">
                         <input type="text" class="form-control" required name="mc" id="mc"
                             placeholder="name@example.com">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-2">
                     <div class="form-floating">
                         <input type="date" class="form-control" required name="md" id="md"
                             placeholder="name@example.com">
@@ -120,41 +120,42 @@
 
             </div>
 
-            <div class="row mt-3">
+            <div class="row mt-3" >
 
-                <div class="offset-md-1 col-md-3">
-                    <div class="form-floating">
-                        <select class="form-select" id="ms" name="ms" required
-                            aria-label="Floating label select example">
-                            <option selected disabled value="">Select</option>
-                            <option value="Tablets">Tablets</option>
-                            <option value="Bottle">Bottle</option>
-                            <option value="Strips">Strips</option>
-                        </select>
-                        <label for="floatingSelect">Unit</label>
+                <div class=" offset-md-1 col-md-7" style="border: 1px ;">
+                    <div class="row">
+                        <div class="col-md-5 mb-2" style="border: 1px ;">
+                            <div class="form-floating">
+                                <select class="form-select" id="ms" name="ms" required
+                                    aria-label="Floating label select example">
+                                    <option selected disabled value="">Select</option>
+                                    <option value="Tablets">Tablets</option>
+                                    <option value="Bottle">Bottle</option>
+                                    <option value="Strips">Strips</option>
+                                </select>
+                                <label for="floatingSelect">Unit</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 mb-3"style="border: 1px ;">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required name="mq" id="mq"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Qty</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div>
+                    <div class="row mt-3"> -->
+                        <!-- <div class="offset-md-1 col-md-9">
+                        </div> -->
+                    <div class="col-md-11"style="border: 1px ;">
+                        <label for="formFile" class="form-label">Upload Pic</label>
+                        <input class="form-control" type="file" onchange="loadpicM(this);" name="ppic" id="ppic">
                     </div>
                 </div>
-
-                <div class="col-md-2">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" required name="mq" id="mq"
-                            placeholder="name@example.com">
-                        <label for="floatingInput">Quantity</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row mt-3">
-
-                <div class="offset-md-1 col-md-9">
-
-                </div>
-                <div class="offset-md-1 col-md-7 mt-5 pt-4">
-                    <label for="formFile" class="form-label">Upload Pic</label>
-                    <input class="form-control" type="file" onchange="loadpicM(this);" name="ppic" id="ppic">
-                </div>
-                <div class="col-md-3">
+                
+                <div class="col-md-3" style="border: 1px ;">
                     <img src="" width="150" height="150" id="prevM" style="display: none;">
                     <input type="text" hidden  id="hidp" name="hidp">
                 </div>
