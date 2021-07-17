@@ -322,9 +322,6 @@ $(document).ready(function () {
       j6 = true;
     }
   });
-  $("ed").click(function (grid) {
-    alert(grid);
-  });
 })
 var mymodule = angular.module("module1", [])
 mymodule.controller("control1", function ($scope, $http)//$scope is lib object provided by angular
